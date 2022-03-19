@@ -18,7 +18,7 @@ architecture neg_tb_arq of neg_tb is
 	
 begin
 
-	a_tb <= '1' after 150 ns, '0' after 400 ns;
+	a_tb <= '1' after 150 ns, '0' after 400 ns,'1' after 600 ns;
 
 	DUT: entity work.neg
 		port map(
