@@ -16,33 +16,32 @@ end;
 
 architecture led_ctl_arq of led_ctl is
 	signal old_rx_data_rdy: std_logic;
-	signal char_data: std_logic_vector(7 downto 0);
 	signal cnt_data: std_logic_vector(7 downto 0);
 	signal led_pipeline_reg: std_logic_vector(3 downto 0);
-	SIGNAL cnt : UNSIGNED(7 DOWNTO 0) := "00000000";
 begin
 
 	process(clk_rx)
+		variable cnt : UNSIGNED(7 downto 0);
+		variable char_data: std_logic_vector(7 downto 0);
 	begin
 		if rising_edge(clk_rx) then
 			if rst_clk_rx = '1' then
 				old_rx_data_rdy <= '0';
-				char_data       <= "00000000";
+				char_data       := "00000000";
 				led_o           <= "0000";
-				--cnt_data		<= "00000000";
-				cnt 			<= (others => '0');
+				cnt 			:= (others => '0');
 				cnt_data 		<= std_logic_vector(cnt);
 			else
 				-- Capture the value of rx_data_rdy for edge detection
 				old_rx_data_rdy <= rx_data_rdy;
 				-- If rising edge of rx_data_rdy, capture rx_data
 				if (rx_data_rdy = '1' and old_rx_data_rdy = '0') then
-					char_data <= rx_data;	
+					char_data := rx_data;	
 					if char_data = "01000001" then 
-						cnt <= cnt + 1;
+						cnt := cnt + 1;
 					end if;
 					if char_data = "01000010" then 
-						cnt <= cnt - 1;
+						cnt := cnt - 1;
 					end if;
 				end if;
 				cnt_data 		<= std_logic_vector(cnt);
