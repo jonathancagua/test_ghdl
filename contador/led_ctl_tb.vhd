@@ -25,7 +25,7 @@ architecture led_ctl_tb_arq of led_ctl_tb is
 	signal led_o_tb:			std_logic_vector(3 downto 0):= "0000";-- The LED outputs
 begin
 	clk_rx_tb <= not clk_rx_tb after 10 ns;
-	rx_data_tb <= "01000010" after 300 ns;
+	rx_data_tb <= "01000010" after 603 ns;
 	rst_clk_rx_tb <= '0'  after 20 ns;--,'0' after 600 ns;
 	rx_data_rdy_tb <= not rx_data_rdy_tb after 40 ns;
 	--btn_clk_rx_tb <= '1'  after 600 ns;

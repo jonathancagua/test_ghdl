@@ -19,7 +19,7 @@ architecture led_ctl_arq of led_ctl is
 	signal char_data: std_logic_vector(7 downto 0);
 	signal cnt_data: std_logic_vector(7 downto 0);
 	signal led_pipeline_reg: std_logic_vector(3 downto 0);
-	SIGNAL cnt : UNSIGNED(7 DOWNTO 0);
+	SIGNAL cnt : UNSIGNED(7 DOWNTO 0) := "00000000";
 begin
 
 	process(clk_rx)
