@@ -20,15 +20,15 @@ architecture led_ctl_tb_arq of led_ctl_tb is
 	signal clk_rx_tb:			std_logic := '0';					-- Clock input
 	signal rst_clk_rx_tb:		std_logic := '1';					-- Active HIGH reset - synchronous to clk_rx
 	signal btn_clk_rx_tb:		std_logic := '0';					-- Button to swap low and high pins
-	signal rx_data_tb:			std_logic_vector(7 downto 0):= "00000000";-- 8 bit data output
+	signal rx_data_tb:			std_logic_vector(7 downto 0):= "01000001";-- 8 bit data output
 	signal rx_data_rdy_tb:		std_logic := '0';					-- valid when rx_data_rdy is asserted
 	signal led_o_tb:			std_logic_vector(3 downto 0):= "0000";-- The LED outputs
 begin
 	clk_rx_tb <= not clk_rx_tb after 10 ns;
-	rx_data_tb <= "10001111";
+	rx_data_tb <= "01000010" after 300 ns;
 	rst_clk_rx_tb <= '0'  after 20 ns;--,'0' after 600 ns;
-	rx_data_rdy_tb <= '1'  after 20 ns;
-	btn_clk_rx_tb <= '1'  after 600 ns;
+	rx_data_rdy_tb <= not rx_data_rdy_tb after 40 ns;
+	--btn_clk_rx_tb <= '1'  after 600 ns;
 	DUT: led_ctl
 		port map(
 			clk_rx => clk_rx_tb,
