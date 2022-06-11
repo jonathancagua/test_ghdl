@@ -41,7 +41,6 @@ begin
 				temporal 	:= unsigned(S_AXI_WDATA(LED_WIDTH-1 downto 0));
 				temporal2 	:= temporal and "00000011";
 				temporal3 	:= temporal and "00001100";
-				--LED <= S_AXI_WDATA(LED_WIDTH-1 downto 0);
 				if(temporal2 = "00000010") then
 					cnt := cnt + 1;
 				end if;
@@ -56,9 +55,9 @@ begin
 					led_pipeline_reg <= cnt_data and "11110000";
 				end if;
 			end if;
-			
+			LED <= led_pipeline_reg;
 		end if;
-		LED <= led_pipeline_reg;
+		
 	end process;
 
 end;
