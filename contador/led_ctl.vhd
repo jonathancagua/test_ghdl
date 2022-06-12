@@ -38,10 +38,10 @@ begin
 				if (rx_data_rdy = '1' and old_rx_data_rdy = '0') then
 					char_data := rx_data;	
 					if char_data = "01000001" then 
-						cnt := cnt + 1;
+						cnt := cnt - 1;
 					end if;
 					if char_data = "01000010" then 
-						cnt := cnt - 1;
+						cnt := cnt + 1;
 					end if;
 				end if;
 				cnt_data 		<= std_logic_vector(cnt);
